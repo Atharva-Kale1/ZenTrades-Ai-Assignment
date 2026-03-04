@@ -1,0 +1,60 @@
+```json
+{
+"account_id": null,
+"company_name": null,
+"business_hours": {
+"days": "Monday, Tuesday, Wednesday, Thursday, Friday",
+"start": "09:00",
+"end": "17:00",
+"timezone": "America/Los_Angeles"
+},
+"office_address": {
+"street": "123 Main St",
+"city": "Los Angeles",
+"state": "CA",
+"zip": "90010"
+},
+"services_supported": [
+"Call Assistant",
+"Voice Analytics",
+"Sentiment Analysis"
+],
+"emergency_definition": [
+"Emergency call initiated",
+"Customer experiencing distress",
+"Security breach detected"
+],
+"emergency_routing_rules": {
+"during_office_hours": "Contact sales team",
+"after_hours": {
+"primary_contact": "john.doe@example.com",
+"primary_phone": "555-123-4567",
+"secondary_contact": "jane.smith@example.com",
+"secondary_phone": "555-987-6543",
+"escalation_logic": "Transfer to security team"
+}
+},
+"non_emergency_routing_rules": {
+"protocol": "Contact support team",
+"examples_of_non_emergency": [
+"Technical issue",
+"Billing inquiry"
+]
+},
+"call_transfer_rules": {
+"retry_limit": 3,
+"failed_transfer_script": "We are experiencing a temporary issue. Please try again in 5 minutes.",
+"absolute_fallback": "Contact sales team"
+},
+"integration_constraints": {
+"software": "Salesforce",
+"prohibited_actions": "Accessing customer data without consent",
+"referral_instructions": "Refer customer to the appropriate department"
+},
+"after_hours_flow_summary": "The sales representative will check the call logs and respond to customer inquiries after hours.",
+"office_hours_flow_summary": "The sales representative will check the call logs and respond to customer inquiries after hours.",
+"questions_or_unknowns": null,
+"notes": null
+}
+}
+```

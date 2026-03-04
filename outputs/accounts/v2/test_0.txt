@@ -1,0 +1,56 @@
+```json
+{
+"account_id": null,
+"company_name": "Evergreen Plumbing & Rooter",
+"business_hours": {
+"days": "Monday - Friday",
+"start": "9:00 AM",
+"end": "5:00 PM",
+"timezone": "Pacific Time"
+},
+"office_address": {
+"street": "123 Main St",
+"city": "Seattle",
+"state": "WA",
+"zip": "98101"
+},
+"services_supported": [
+"Gas Line Repair",
+"Water Main Breaks"
+],
+"emergency_definition": [
+"Gas leaks now Priority #1 Emergencies",
+"If someone smells gas, tell them to leave the house immediately, then we’ll attempt the transfer. Also, add \"Water Main Breaks\" to the emergency list. If the street is flooding, that’s us."
+],
+"emergency_routing_rules": {
+"during_office_hours": "Sarah at 555-0789",
+"after_hours": {
+"primary_contact": "Sarah at 555-0789",
+"primary_phone": "555-0789",
+"secondary_contact": "None",
+"secondary_phone": "None",
+"escalation_logic": "Text a photo of the leak to our main office number"
+}
+},
+"non_emergency_routing_rules": {
+"protocol": "Keep it the same, but add one thing: tell them to \"Text a photo of the leak to our main office number\" while they wait for the callback. It helps the techs prep."
+},
+"call_transfer_rules": {
+"retry_limit": 3,
+"failed_transfer_script": "Keep it the same, but add one thing: tell them to \"Text a photo of the leak to our main office number\" while they wait for the callback. It helps the techs prep.",
+"absolute_fallback": "Continue to Sarah at 555-0789"
+},
+"integration_constraints": {
+"software": "None",
+"prohibited_actions": "None",
+"referral_instructions": "None"
+},
+"after_hours_flow_summary": "Saturday extension, Gas/Water Main emergencies, Sarah replacing Mike, the 3-ring retry, and the Arctic Air referral.",
+"office_hours_flow_summary": "Saturday extension, Gas/Water Main emergencies, Sarah replacing Mike, the 3-ring retry, and the Arctic Air referral.",
+"questions_or_unknowns": [
+"No sprinklers in ServiceTrade?"
+],
+"notes": "Correct. Absolutely no irrigation or sprinklers."
+}
+}
+```
