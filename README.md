@@ -1,60 +1,3 @@
-# Retell Agent Setup (Manual Import)
-
-If the Retell API is not available on the free tier, the generated Agent Draft Spec JSON can be manually imported into the Retell UI.
-
-The pipeline automatically generates an agent configuration file at:
-`outputs/accounts/<account_id>/v1/agent_spec.json`
-
-or after onboarding updates:
-`outputs/accounts/<account_id>/v2/agent_spec.json`
-
-## Manual Steps to Create the Agent in Retell
-
-1. **Create a Retell account**
-   - Go to: [https://retellai.com](https://retellai.com)
-   - Sign in or create a free account.
-
-2. **Open the Agents Dashboard**
-   - Navigate to: **Dashboard → Agents**
-   - Click: **Create New Agent**
-
-3. **Configure the Agent**
-   - Fill the fields using values from the generated `agent_spec.json` file.
-   - **Agent Name**
-     - Copy: `agent_name`
-     - Example: *Seattle Plumbing Voice Assistant*
-   - **Voice Style**
-     - Select a basic voice that matches: `voice_style`
-     - Example: *professional-friendly*
-   - **System Prompt**
-     - Copy the entire value from `system_prompt` and paste it into the Agent System Prompt field.
-   - **Key Variables**
-     - Add the values from `key_variables` (e.g., `timezone`, `business_hours`, `office_address`, `emergency_routing`).
-     - These can be added to the prompt or stored in Retell variables if available.
-   - **Call Transfer Protocol**
-     - Use the values from `call_transfer_protocol` to configure: `retry_limit`, `timeout`, and `escalation order`.
-   - **Fallback Protocol**
-     - Copy the text from `fallback_protocol` and paste it into the fallback handling section of the agent.
-     - Example: *If transfer fails reassure the caller someone will call shortly.*
-   - **Tool Invocation Placeholders**
-     - The following placeholders are included in the spec and represent actions that would normally trigger backend tools. These should not be mentioned to the caller.
-     - Example placeholders: `transfer_call`, `create_callback_request`, `lookup_customer`
-     - These can be implemented later using backend integrations.
-
-4. **Save the Agent**
-   - Click **Save Agent**. The agent will now be ready to handle calls.
-
-## Versioning Behavior
-
-When onboarding updates are processed, the pipeline generates:
-`outputs/accounts/<account_id>/v2/agent_spec.json`
-
-**To update the Retell agent:**
-1. Open the existing agent in the Retell dashboard.
-2. Replace the system prompt and settings with values from the v2 spec.
-3. Save the updated agent.
-
----
 
 # Zero-Cost Automation Pipeline
 
@@ -282,6 +225,63 @@ Example change log:
  }
 }
 ```
+# Retell Agent Setup (Manual Import)
+
+If the Retell API is not available on the free tier, the generated Agent Draft Spec JSON can be manually imported into the Retell UI.
+
+The pipeline automatically generates an agent configuration file at:
+`outputs/accounts/<account_id>/v1/agent_spec.json`
+
+or after onboarding updates:
+`outputs/accounts/<account_id>/v2/agent_spec.json`
+
+## Manual Steps to Create the Agent in Retell
+
+1. **Create a Retell account**
+   - Go to: [https://retellai.com](https://retellai.com)
+   - Sign in or create a free account.
+
+2. **Open the Agents Dashboard**
+   - Navigate to: **Dashboard → Agents**
+   - Click: **Create New Agent**
+
+3. **Configure the Agent**
+   - Fill the fields using values from the generated `agent_spec.json` file.
+   - **Agent Name**
+     - Copy: `agent_name`
+     - Example: *Seattle Plumbing Voice Assistant*
+   - **Voice Style**
+     - Select a basic voice that matches: `voice_style`
+     - Example: *professional-friendly*
+   - **System Prompt**
+     - Copy the entire value from `system_prompt` and paste it into the Agent System Prompt field.
+   - **Key Variables**
+     - Add the values from `key_variables` (e.g., `timezone`, `business_hours`, `office_address`, `emergency_routing`).
+     - These can be added to the prompt or stored in Retell variables if available.
+   - **Call Transfer Protocol**
+     - Use the values from `call_transfer_protocol` to configure: `retry_limit`, `timeout`, and `escalation order`.
+   - **Fallback Protocol**
+     - Copy the text from `fallback_protocol` and paste it into the fallback handling section of the agent.
+     - Example: *If transfer fails reassure the caller someone will call shortly.*
+   - **Tool Invocation Placeholders**
+     - The following placeholders are included in the spec and represent actions that would normally trigger backend tools. These should not be mentioned to the caller.
+     - Example placeholders: `transfer_call`, `create_callback_request`, `lookup_customer`
+     - These can be implemented later using backend integrations.
+
+4. **Save the Agent**
+   - Click **Save Agent**. The agent will now be ready to handle calls.
+
+## Versioning Behavior
+
+When onboarding updates are processed, the pipeline generates:
+`outputs/accounts/<account_id>/v2/agent_spec.json`
+
+**To update the Retell agent:**
+1. Open the existing agent in the Retell dashboard.
+2. Replace the system prompt and settings with values from the v2 spec.
+3. Save the updated agent.
+
+---
 
 ## LLM Usage (Zero Cost)
 
