@@ -1,0 +1,36 @@
+Participants:
+
+Clara (A): Account Executive at Clara Answers
+
+Jordan (B): Owner of Evergreen Plumbing
+
+[00:00 - 02:15] Introduction & Small Talk
+A: Thanks for jumping on, Jordan. How’s the weather in Seattle treating you?
+B: Oh, you know, the usual gray. It’s actually been a bit of a nightmare—we had a sudden cold snap, and my phone has been ringing off the hook with burst pipes. My current answering service is just… they’re dropping the ball. They don’t know a "puddle" from a "flood," if you know what I mean.
+A: I hear that a lot. That’s exactly why we focus on that initial triage. Let’s dive into your specific setup so we can build out this agent draft.
+
+[02:15 - 05:40] Business Hours & Location
+A: First off, what do your standard "office hours" look like?
+B: We are physically in the office Monday through Friday, 8:00 AM to 5:00 PM. But on Saturdays, we do a "half-day" for scheduled maintenance from 9:00 AM to 1:00 PM. We're totally closed Sundays. We’re based in Seattle, so Pacific Time.
+A: Got it. And the physical address for the technicians to head out from?
+B: 4202 Industrial Way, Suite B, Seattle, Washington, 98101.
+
+[05:40 - 09:15] Services & Emergency Triage
+A: What services should the AI be ready to handle?
+B: We do it all: water heater installs, drain cleaning, leak detection, and full repiping.
+A: And how do we define an "Emergency"? This is the most important part for the routing logic.
+B: Okay, write this down. An emergency is ONLY: 1) Any active flooding inside the home, 2) No water to the entire house, or 3) A sewage backup. If it’s just a leaky faucet or a running toilet, that is NOT an emergency.
+A: Clear. And if it is an emergency, who gets the call?
+B: During the day, transfer to the Front Desk. After hours, it goes to my Lead Tech, Mike, at 555-0123. If Mike doesn’t pick up after two tries, it needs to roll over to me at 555-9999. If I don't answer... well, tell them we'll have someone there within two hours and hang up.
+
+[09:15 - 12:30] Non-Emergency & Integration Rules
+A: What about those non-emergencies, like the leaky faucet?
+B: Just take their name, number, and email. Tell them our dispatch coordinator will call them the next business morning to book a slot.
+A: Any specific constraints we need to know for your software? I know you mentioned you use ServiceTrade.
+B: Yeah, here’s a big one: My techs hate it when jobs are created for "Sprinkler Systems." We don't do irrigation. Never create any jobs in ServiceTrade that mention sprinklers or irrigation. Just tell those people we don't service that and give them the number for "Rain-Go Irrigation" instead.
+
+[12:30 - 15:00] Closing & Unknowns
+A: Perfect. One last thing—do you have a specific "script" for when a transfer fails?
+B: Just something like, "I'm sorry, I'm having trouble reaching the on-call tech. I have flagged this as a priority, and they will call you back on this number immediately."
+A: Great. I think I have enough for the v1. I’ll get that Agent Spec generated.
+B: Thanks, Clara. Talk soon.

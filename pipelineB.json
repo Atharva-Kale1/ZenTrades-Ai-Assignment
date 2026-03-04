@@ -1,0 +1,325 @@
+{
+  "name": "pipelineB",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1184,
+        112
+      ],
+      "id": "a5ea7c75-87cb-45c7-abf7-6f9d14a32f04",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/home/node/.n8n-files/outputs/accounts/v2/test_{{$itemIndex}}.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "816559b1-7589-44d8-a714-060c63c3f153",
+      "name": "Read/Write Files from Disk5"
+    },
+    {
+      "parameters": {
+        "resource": "document",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "text": "You are an information extraction system.\n\nYour task is to read a phone call transcript between a service business owner and a sales/demo representative, and extract structured operational details for configuring a phone assistant.\n\nReturn ONLY valid JSON.\nDo not include explanations, markdown, or commentary.\n\nIf a field is missing in the transcript, return `null` or add it to `questions_or_unknowns`.\n\nFollow the exact schema below.\n\nSCHEMA:\n\n{\n\"account_id\": string,\n\"company_name\": string,\n\"business_hours\": {\n\"days\": string,\n\"start\": string,\n\"end\": string,\n\"timezone\": string\n},\n\"office_address\": {\n\"street\": string,\n\"city\": string,\n\"state\": string,\n\"zip\": string\n},\n\"services_supported\": [string],\n\"emergency_definition\": [string],\n\"emergency_routing_rules\": {\n\"during_office_hours\": string,\n\"after_hours\": {\n\"primary_contact\": string,\n\"primary_phone\": string,\n\"secondary_contact\": string,\n\"secondary_phone\": string,\n\"escalation_logic\": string\n}\n},\n\"non_emergency_routing_rules\": {\n\"protocol\": string,\n\"examples_of_non_emergency\": [string]\n},\n\"call_transfer_rules\": {\n\"retry_limit\": number,\n\"failed_transfer_script\": string,\n\"absolute_fallback\": string\n},\n\"integration_constraints\": {\n\"software\": string,\n\"prohibited_actions\": string,\n\"referral_instructions\": string\n},\n\"after_hours_flow_summary\": string,\n\"office_hours_flow_summary\": string,\n\"questions_or_unknowns\": [string],\n\"notes\": string\n}\n\nRules:\n\n* Do NOT invent information.\n* Extract only what is explicitly mentioned in the transcript.\n* If a detail is uncertain, add it to `questions_or_unknowns`.\n* Always return valid JSON.\n* Do not include markdown formatting.\nsimole json",
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -528,
+        128
+      ],
+      "id": "95017beb-b6da-4903-9197-d5057a0385fe",
+      "name": "Analyze document1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "0zm9JqDdRXgYWzJo",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/input/demo_calls/onboarding/*.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -768,
+        128
+      ],
+      "id": "ebcb3e21-5246-4463-8b2b-fb0d19dfe49a",
+      "name": "Read/Write Files from Disk7"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content.parts[0].text",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -208,
+        128
+      ],
+      "id": "ba0d63ac-cea4-485b-be8d-aeb1b1fb90c9",
+      "name": "Convert to File4"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "BsiNcTiLRlhPVIgl",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/BsiNcTiLRlhPVIgl",
+          "cachedResultName": "My Sub-Workflow 1"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        16,
+        272
+      ],
+      "id": "3681b4e9-ef7a-4d11-bedd-3bcba236bfb8",
+      "name": "Call 'My Sub-Workflow 1'"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "data ",
+        "joinMode": "keepNonMatches",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        400,
+        144
+      ],
+      "id": "d9a96da0-6ae6-4620-ac9e-fa47d3e06833",
+      "name": "Merge",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nconst oldMemo = items[0].json;\nconst newMemo = items[1].json;\n\nconst updatedMemo = {...oldMemo};\nconst changes = {};\n\nfor (const key in newMemo) {\n\n  const oldValue = oldMemo[key];\n  const newValue = newMemo[key];\n\n  if (newValue === null || newValue === undefined) continue;\n\n  if (JSON.stringify(oldValue) !== JSON.stringify(newValue)) {\n\n    changes[key] = {\n      old: oldValue || null,\n      new: newValue,\n      reason: \"Updated during onboarding call\",\n      timestamp: new Date().toISOString()\n    };\n\n    updatedMemo[key] = newValue;\n  }\n}\n\nreturn [{\n  json: {\n    account_id: oldMemo.account_id,\n    updatedMemo,\n    changes\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        144
+      ],
+      "id": "a18c41b0-2180-4e11-8522-b2349d65187d",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        0
+      ],
+      "id": "20cdce47-e7fd-45c7-bfc8-d4fa00ab1fe6",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/home/node/.n8n-files/outputs/changelog/changelog_{{$itemIndex}}.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        976,
+        144
+      ],
+      "id": "92979146-131e-4d4f-82fd-83eccdcdf813",
+      "name": "Read/Write Files from Disk1"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "changes",
+        "binaryPropertyName": "=data",
+        "options": {
+          "encoding": "=utf8"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        816,
+        144
+      ],
+      "id": "527556d5-ae85-4c6b-a60f-91057c48bb52",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk5": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze document1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk7": {
+      "main": [
+        [
+          {
+            "node": "Analyze document1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File4": {
+      "main": [
+        [
+          {
+            "node": "Call 'My Sub-Workflow 1'",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read/Write Files from Disk5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'My Sub-Workflow 1'": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4dbd16e7-6612-42d4-a489-a0d63a0d7551",
+  "meta": {
+    "instanceId": "cbf7027d5466fa64a4dc9140ff335c2b5c0e14366d1b9e25e811d2593c23ebfd"
+  },
+  "id": "7CXPob1yb3WIOBtX",
+  "tags": []
+}

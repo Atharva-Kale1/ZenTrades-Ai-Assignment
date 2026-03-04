@@ -1,0 +1,57 @@
+{
+  "name": "My Sub-Workflow 1",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        272,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/outputs/accounts/v1/*.txt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        640,
+        352
+      ],
+      "id": "d5e6011f-c7b4-4ba9-a7d5-d39ce3095de7",
+      "name": "Read/Write Files from Disk7"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "7d268312-8552-42b9-ad55-13fc3bf88a60",
+  "meta": {
+    "instanceId": "cbf7027d5466fa64a4dc9140ff335c2b5c0e14366d1b9e25e811d2593c23ebfd"
+  },
+  "id": "BsiNcTiLRlhPVIgl",
+  "tags": []
+}

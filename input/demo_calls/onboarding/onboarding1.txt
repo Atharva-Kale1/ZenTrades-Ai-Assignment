@@ -1,0 +1,37 @@
+This Onboarding Call is designed to provide "Delta" (changes) to the previous Demo Call. To successfully pass the assignment, your Pipeline B needs to detect that the after-hours contact has changed, the emergency definition has expanded, and a new service has been added.
+
+Onboarding Call Transcript: "Evergreen Plumbing & Rooter"
+Participants:
+
+Clara (A): Implementation Specialist at Clara Answers
+
+Jordan (B): Owner of Evergreen Plumbing
+
+[00:00 - 01:30] Context Setting
+A: Hey Jordan, great to talk again. We’ve got your v1 agent drafted based on our last chat. Today is about refining that logic before we go live.
+B: Sounds good. I’ve had some coffee and realized I missed a few things—plus, my Lead Tech, Mike, is actually going on paternity leave, so we need to swap some numbers.
+
+[01:30 - 04:15] Business Hours & Location Tweak
+A: First, any changes to the Seattle office address or your 8:00 to 5:00 schedule?
+B: Address is the same. But for the Saturday hours, let's actually extend that. We’re seeing more demand. Let’s do 9:00 AM to 4:00 PM on Saturdays now. Still closed Sundays.
+A: Got it. Saturday is now 9 to 4.
+
+[04:15 - 07:00] Service Expansion & Emergency Updates
+A: Any new services?
+B: Yes, we just got certified for Gas Line Repair. So if someone calls about a gas smell or a fireplace line, we can handle that now.
+A: That changes the emergency definition, right?
+B: Huge point. Gas leaks are now Priority #1 Emergencies. If they smell gas, tell them to leave the house immediately, then we’ll attempt the transfer. Also, add "Water Main Breaks" to the emergency list. If the street is flooding, that's us.
+
+[07:00 - 10:30] Routing & Personnel Changes
+A: You mentioned Mike is out. Who handles the after-hours emergencies now?
+B: Okay, new flow. After 5:00 PM and on Sundays, the first call goes to Sarah at 555-0789. She’s the new On-Call Lead. If she doesn’t pick up after 3 attempts (up from 2), then it comes to me at the same number (555-9999).
+A: 3 attempts for Sarah, then you. What about the "Transfer Fail" protocol?
+B: Keep it the same, but add one thing: tell them to "Text a photo of the leak to our main office number" while they wait for the callback. It helps the techs prep.
+
+[10:30 - 13:00] Integration & Tool Logic
+A: Still no sprinklers in ServiceTrade?
+B: Correct. Absolutely no irrigation or sprinklers. But, we did just partner with a local HVAC company. If someone calls for AC or Heating, don't just turn them away—transfer them to "Arctic Air" at 555-5500. Don't create a job for it, just a warm transfer.
+
+[13:00 - 15:00] Wrap Up
+A: Okay, I've got the Saturday extension, Gas/Water Main emergencies, Sarah replacing Mike, the 3-ring retry, and the Arctic Air referral. I'll update the memo to v2.
+B: Perfect. Let's get this live.

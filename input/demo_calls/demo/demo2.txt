@@ -1,0 +1,43 @@
+Participants:
+
+Clara (A): AI Solutions Architect
+
+Marcus (B): Director of Operations at Blue Sky PM
+
+[00:00 - 02:30] Introduction & Service Scope
+A: Marcus, thanks for hopping on. Let’s get the basics for the Blue Sky configuration. What’s the main focus of this agent?
+B: We manage about 400 doors across Austin, Texas. We need this agent to handle our front-line maintenance requests and leasing inquiries. Our physical office is at 1201 Congress Ave, Suite 300, Austin, TX 78701.
+A: Got it. And for legal/billing, do you have a specific license number to include?
+B: Yeah, our TX Real Estate License is TREC #9988221. Please make sure that’s in the "About Us" if anyone asks for our credentials.
+
+[02:30 - 05:00] Business Hours & Timezones
+A: What are your operating hours?
+B: We are strictly Monday through Friday, 9:00 AM to 6:00 PM Central Time. However, we have a "Quiet Period" on Wednesdays from 12:00 PM to 2:00 PM for all-hands meetings—the agent should treat that like "After Hours" and not try to transfer to the office.
+A: That’s a great detail. So, Monday–Friday 9-6, except Wednesday midday. Weekends?
+B: Closed. Totally automated.
+
+[05:00 - 08:15] Triage Logic: Maintenance vs. Leasing
+A: How do we handle a resident calling with a broken dishwasher vs. a prospect wanting a tour?
+B: Okay, two paths.
+
+Leasing: If they want to see a house, ask for their name and the property address. Tell them we only do self-guided tours via the "Rently" app. Do not transfer leasing calls. Just tell them to download the app.
+
+Maintenance: This is where the triage matters.
+A: Give me the "Emergency" criteria for a rental property.
+B: Emergency is: 1) Fire (tell them to hang up and call 911 first), 2) Active water flood, 3) Total loss of AC if the outside temperature is above 85°F, or 4) Total loss of Heat if it’s below 40°F.
+A: Those temperature thresholds are key. What if it’s not an emergency?
+B: If it’s a "clogged toilet" or "broken lightbulb," tell them to submit a ticket via the Resident Portal. We don't take those over the phone.
+
+[08:15 - 11:00] Routing & Escalation
+A: If it is an emergency (like a flood at 2:00 AM), where does the call go?
+B: During office hours, transfer to the Maintenance Coordinator at 555-4433. If they don't answer, try the Front Desk at 555-1100.
+A: And After Hours?
+B: That goes to our third-party vendor, Rapid Repair Pros, at 555-0900. If they don't pick up, the agent must tell the caller: "Please take immediate steps to mitigate damage, such as turning off the water main, and a manager will call you within 30 minutes."
+A: Should the agent collect the property address before transferring?
+B: Yes! Never transfer an emergency without the Address and a Phone Number.
+
+[11:00 - 13:30] Integration Constraints & Closing
+A: Any "Never-Do" rules?
+B: Yes. Never promise a specific time for a technician. Only say "A technician will reach out to schedule." Also, we do NOT manage any properties in the "Westlake" area anymore. If they mention a Westlake address, tell them we no longer manage that community and they should contact "Gold Standard PM."
+A: Perfect. I’ll build out the v1 agent for Blue Sky.
+B: Sounds like a plan.
